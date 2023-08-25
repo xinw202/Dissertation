@@ -611,7 +611,6 @@ for (c in c_values) {
 }
 
 # Plot the results
-library(ggplot2)
 ggplot(results, aes(x = c)) +
   geom_line(aes(y = LOLE_GB), color = "blue") +
   geom_line(aes(y = LOLE_Ire), color = "red") +
@@ -735,27 +734,29 @@ for (year in names(winters)) {
   }
 }
 
-# Plotting the results
 ggplot(df_results, aes(x = Capacity, y = LOLE, color = Year)) +
   geom_line(size = 1) +  
-  scale_x_continuous(breaks = seq(0, max(c_values), by = 100),   
+  scale_x_continuous(breaks = seq(0, max(c_values), by = 200),   
                      limits = c(0, max(c_values)),  
                      expand = c(0, 0)) +  
-  scale_y_continuous(breaks = seq(0, max(df_results$LOLE, na.rm = TRUE), by = 0.5),  
+  scale_y_continuous(breaks = seq(0, max(df_results$LOLE, na.rm = TRUE), by = 1),  
                      limits = c(0, max(df_results$LOLE, na.rm = TRUE)),  
                      expand = c(0, 0)) +  
   labs(x = "Interconnector Capacity (MW)", 
        y = "LOLE (hours/year)", 
-       # title = "Impact of Interconnector Capacity on LOLE", 
        subtitle = "Based on 7 Winters") +
   theme_minimal() +
-  theme(legend.title = element_blank(),
-        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, color = "black", size = 12),  
-        axis.text.y = element_text(angle = 0, hjust = 1, vjust = 0.5, color = "black", size = 12),  
-        axis.title.x = element_text(face = "bold", size = 14, margin = margin(t = 10)),  
-        axis.title.y = element_text(face = "bold", size = 14, margin = margin(r = 10)),  
-        plot.title = element_text(face = "bold", size = 16, hjust = 0.5),  
-        plot.subtitle = element_text(hjust = 0.5))  
+  theme(
+    axis.line = element_line(size = 1),  # Increase the size of axis lines
+    legend.title = element_blank(),
+    axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, color = "black", size = 12),  
+    axis.text.y = element_text(angle = 0, hjust = 1, vjust = 0.5, color = "black", size = 12),  
+    axis.title.x = element_text(face = "bold", size = 14, margin = margin(t = 10)),  
+    axis.title.y = element_text(face = "bold", size = 14, margin = margin(r = 10)),  
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),  
+    plot.subtitle = element_text(hjust = 0.5)
+  )  
+
 
 
 
@@ -795,10 +796,10 @@ for (year in names(winters)) {
 # Plotting the results
 ggplot(df_results_ire, aes(x = Capacity, y = LOLE, color = Year)) +
   geom_line(size = 1) +  
-  scale_x_continuous(breaks = seq(0, max(c_values), by = 100),   
+  scale_x_continuous(breaks = seq(0, max(c_values), by = 200),   
                      limits = c(0, max(c_values)),  
                      expand = c(0, 0)) +  
-  scale_y_continuous(breaks = seq(0, max(df_results_ire$LOLE, na.rm = TRUE), by = 0.5),  
+  scale_y_continuous(breaks = seq(0, max(df_results_ire$LOLE, na.rm = TRUE), by = 1),  
                      limits = c(0, max(df_results_ire$LOLE, na.rm = TRUE)),  
                      expand = c(0, 0)) +  
   labs(x = "Interconnector Capacity (MW)", 
@@ -806,13 +807,16 @@ ggplot(df_results_ire, aes(x = Capacity, y = LOLE, color = Year)) +
        # title = "Impact of Interconnector Capacity on LOLE (Ireland)", 
        subtitle = "Based on 7 Winters") +
   theme_minimal() +
-  theme(legend.title = element_blank(),
-        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, color = "black", size = 12),  
-        axis.text.y = element_text(angle = 0, hjust = 1, vjust = 0.5, color = "black", size = 12),  
-        axis.title.x = element_text(face = "bold", size = 14, margin = margin(t = 10)),  
-        axis.title.y = element_text(face = "bold", size = 14, margin = margin(r = 10)),  
-        plot.title = element_text(face = "bold", size = 16, hjust = 0.5),  
-        plot.subtitle = element_text(hjust = 0.5))
+  theme(
+    axis.line = element_line(size = 1),  # Increase the size of axis lines
+    legend.title = element_blank(),
+    axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, color = "black", size = 12),  
+    axis.text.y = element_text(angle = 0, hjust = 1, vjust = 0.5, color = "black", size = 12),  
+    axis.title.x = element_text(face = "bold", size = 14, margin = margin(t = 10)),  
+    axis.title.y = element_text(face = "bold", size = 14, margin = margin(r = 10)),  
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),  
+    plot.subtitle = element_text(hjust = 0.5)
+  )  
 
 
 # Extract the day with the maximum (demand - wind) for each year
